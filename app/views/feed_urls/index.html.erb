@@ -1,0 +1,22 @@
+<h1>Listing feed_urls</h1>
+
+<table>
+  <tr>
+    <th>Feed url</th>
+    <th>Star</th>
+  </tr>
+
+<% for feed_url in @feed_urls %>
+  <tr>
+    <td><%=h feed_url.feed_url %></td>
+    <td><%=h feed_url.star %></td>
+    <td><%= link_to 'Show', feed_url %></td>
+    <td><%= link_to 'Edit', edit_feed_url_path(feed_url) %></td>
+    <td><%= link_to 'Destroy', feed_url, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New feed_url', new_feed_url_path %>

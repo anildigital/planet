@@ -1,0 +1,9 @@
+<div class="contentBox" style="width:800px">
+  <% for feed_item in @feeds%>
+    <div class="feedItemBox">
+      <h2><a href="<%= h feed_item.link %>"> <%= feed_item.title %></a></h2>
+      <p><%= feed_item.description %></p>
+    </div>
+  <% end %>
+  <%= will_paginate @feeds %>
+</div>

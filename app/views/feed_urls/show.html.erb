@@ -1,0 +1,13 @@
+<p>
+  <b>Feed url:</b>
+  <%=h @feed_url.feed_url %>
+</p>
+
+<p>
+  <b>Star:</b>
+  <%=h @feed_url.star %>
+</p>
+
+
+<%= link_to 'Edit', edit_feed_url_path(@feed_url) %> |
+<%= link_to 'Back', feed_urls_path %>
