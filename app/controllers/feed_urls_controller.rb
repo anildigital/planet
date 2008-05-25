@@ -1,4 +1,6 @@
 class FeedUrlsController < ApplicationController
+  before_filter :authenticate
+  
   # GET /feed_urls
   # GET /feed_urls.xml
   def index
@@ -82,4 +84,26 @@ class FeedUrlsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # 
+  def login
+    session[:authenticated] = true
+    render :text => "You have successfully logged in. <a href='/blog'>Back</a>"
+  end
+  
+  # One way to logout from http authentication.
+  # But it is specific to some browsers. So it won't work always.
+  def logout
+    render :text => "You logged out. <a href='/blog'>Back</a>", :status => 401
+    session[:authenticated] = false
+  end
+  
+  protected
+  def authenticate
+     authenticate_or_request_with_http_basic do | user_name, password|
+      pwd = YAML::load_file("/etc/password.yml")["type"]["password"]
+      user_name == "anil" && password == pwd
+    end
+  end
+  
 end

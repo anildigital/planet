@@ -33,10 +33,11 @@ ActiveRecord::Schema.define(:version => 3) do
   create_table "feeds", :force => true do |t|
     t.string   "link"
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.datetime "pubDate"
     t.integer  "error_tag"
     t.string   "site_url"
+    t.string   "href"
     t.string   "copyright"
     t.string   "license"
     t.string   "feed_version"

@@ -3,6 +3,7 @@ class Fetcher
   def self.fetch
     feeds = FeedUrl.find(:all)
     feeds_array = feeds.collect{|i| i.feed_url}
+    puts "building merged feed"
     rails_planet = FeedTools.build_merged_feed(feeds_array)
     return rails_planet
   end
@@ -10,6 +11,9 @@ class Fetcher
   # Populates RSS feed table
   def self.populate
     feed_records = CachedFeed.find(:all)
+    feeds = FeedUrl.find(:all)
+    star_feeds = feeds.select{|i| i.star == "Y"}
+    star_feed_urls = feeds.collect{|i| i.feed_url}
     for i in feed_records
       feedtools_object = FeedTools::Feed.new
       feedtools_object.feed_data = i.feed_data
@@ -21,7 +25,13 @@ class Fetcher
         feed.description = i.description
         feed.pubDate = i.published
         feed.site_url = i.base_uri
-        feed.star = "Y"
+        feed.href = feedtools_object.href
+        puts feed.site_url
+        if star_feed_urls.include?(feedtools_object.href)
+          feed.star = "Y"
+        else
+          feed.star = "N"
+        end
         feed.copyright = i.copyright
         feed.license = i.license
         feed.feed_version = i.feed_version
@@ -40,5 +50,3 @@ class Fetcher
       end
     end
 end
-  
-

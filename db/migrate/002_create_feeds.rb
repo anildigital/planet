@@ -3,10 +3,11 @@ class CreateFeeds < ActiveRecord::Migration
     create_table :feeds do |t|
       t.column :link, :string
       t.column :title, :string
-      t.column :description, :string
+      t.column :description, :text
       t.column :pubDate, :datetime
       t.column :error_tag, :integer
       t.column :site_url, :string
+      t.column :href, :string
       t.column :copyright, :string
       t.column :license, :string
       t.column :feed_version, :string
