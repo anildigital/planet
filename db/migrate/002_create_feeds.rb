@@ -10,7 +10,7 @@ class CreateFeeds < ActiveRecord::Migration
       t.column :href, :string
       t.column :copyright, :string
       t.column :license, :string
-      t.column :feed_version, :string
+      t.column :feed_version, :strings
       t.column :tags, :string
       t.column :star, :string
       t.column :updated, :datetime
