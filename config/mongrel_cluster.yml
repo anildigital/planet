@@ -1,0 +1,8 @@
+--- 
+cwd: /home/anil/public_html/digitalcodes.org_blog/current
+log_file: log/mongrel.log
+port: "8014"
+environment: production
+address: 127.0.0.1
+pid_file: tmp/pids/mongrel.pid
+servers: 2
