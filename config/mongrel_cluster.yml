@@ -1,5 +1,5 @@
 --- 
-cwd: /home/anil/public_html/digitalcodes.org_blog/current
+cwd: /home/anil/public_html/planetrails.digitalcodes.org/current
 log_file: log/mongrel.log
 port: "8014"
 environment: production
