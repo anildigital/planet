@@ -60,3 +60,7 @@ end
 require 'feed_tools'
 FeedTools.configurations[:feed_cache] = "FeedTools::DatabaseFeedCache"
 FeedTools.feed_cache.initialize_cache()
+
+# For mislav's will paginate plugin
+gem 'mislav-will_paginate', '~> 2.2'
+require 'will_paginate'
