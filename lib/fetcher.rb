@@ -18,13 +18,13 @@ class Fetcher
       feedtools_object = FeedTools::Feed.new
       feedtools_object.feed_data = i.feed_data
       feedtools_object.href = i.href
-      for i in feedtools_object.items
+      for j in feedtools_object.items
         feed = Feed.new
-        feed.link = i.link
-        feed.title = i.title
-        feed.description = i.description
-        feed.pubDate = i.published
-        feed.site_url = i.base_uri
+        feed.link = j.link
+        feed.title = j.title
+        feed.description = j.description
+        feed.pubDate = j.published
+        feed.site_url = j.base_uri
         feed.href = feedtools_object.href
         puts feed.site_url
         if star_feed_urls.include?(feedtools_object.href)
@@ -32,11 +32,11 @@ class Fetcher
         else
           feed.star = "N"
         end
-        feed.copyright = i.copyright
-        feed.license = i.license
-        feed.feed_version = i.feed_version
-        feed.tags = i.tags
-        feed.updated = i.updated
+        feed.copyright = j.copyright
+        feed.license = j.license
+        feed.feed_version = j.feed_version
+        feed.tags = j.tags
+        feed.updated = j.updated
           begin
             feed.save!
           rescue Exception => e
