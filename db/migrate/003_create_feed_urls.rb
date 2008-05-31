@@ -3,7 +3,6 @@ class CreateFeedUrls < ActiveRecord::Migration
     create_table :feed_urls do |t|
       t.string :feed_url
       t.string :star
-
       t.timestamps
     end
   end
