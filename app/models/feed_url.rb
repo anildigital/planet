@@ -45,7 +45,7 @@ class FeedUrl < ActiveRecord::Base
         rss_feed.published = (item/:pubDate).inner_html
 
         if rss_feed.published.blank?
-          puts "rss feed blank."
+          puts "rss feed published time blank. calculating system one."
           rss_feed.published = (Time.now - time_offset.hours).to_s(:db)
           puts rss_feed.published
           time_offset += 1
