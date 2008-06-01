@@ -16,7 +16,7 @@ class FeedUrl < ActiveRecord::Base
       process_atom(doc)
       return 'atom'
     else
-      raise RunTimeError, 'Unknown feed type only RSS and Atom can be read'
+      raise RuntimeError, 'Unknown feed type only RSS and Atom can be read'
     end
   end
 
