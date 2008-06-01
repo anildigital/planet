@@ -3,13 +3,13 @@
 <table>
   <tr>
     <th>Feed url</th>
-    <th>Star</th>
+    <th>Title</th>
   </tr>
 
 <% for feed_url in @feed_urls %>
   <tr>
     <td><%=h feed_url.feed_url %></td>
-    <td><%=h feed_url.star %></td>
+    <td><%=h feed_url.title %></td>
     <td><%= link_to 'Show', feed_url %></td>
     <td><%= link_to 'Edit', edit_feed_url_path(feed_url) %></td>
     <td><%= link_to 'Destroy', feed_url, :confirm => 'Are you sure?', :method => :delete %></td>

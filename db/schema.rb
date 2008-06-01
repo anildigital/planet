@@ -9,41 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 3) do
-
-  create_table "cached_feeds", :force => true do |t|
-    t.string   "href"
-    t.string   "title"
-    t.string   "link"
-    t.text     "feed_data"
-    t.string   "feed_data_type"
-    t.text     "http_headers"
-    t.datetime "last_retrieved"
-    t.integer  "time_to_live"
-    t.text     "serialized"
-  end
+ActiveRecord::Schema.define(:version => 2) do
 
   create_table "feed_urls", :force => true do |t|
     t.string   "feed_url"
+    t.string   "title"
     t.string   "star"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "feeds", :force => true do |t|
-    t.string   "link"
+    t.integer  "feed_url_id"
     t.string   "title"
-    t.text     "description"
-    t.datetime "pubDate"
-    t.integer  "error_tag"
-    t.string   "site_url"
-    t.string   "href"
-    t.string   "copyright"
-    t.string   "license"
-    t.string   "feed_version"
-    t.string   "tags"
-    t.string   "star"
-    t.datetime "updated"
+    t.string   "author"
+    t.string   "link"
+    t.text     "content"
+    t.datetime "published"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
