@@ -25,12 +25,19 @@ class FeedUrl < ActiveRecord::Base
   def process_rss(rss)
     puts "processing rss"
     time_offset = 1
+    
+    # taking out site/blog link and title.
+    site_link = (rss/:channel/:link).first.inner_html
+    site_title = (rss/:channel/:title).first.inner_html
+
     (rss/:channel/:item).each do |item|
       link = (item/:link).inner_html
 
       if ! (Feed.find_by_link(link))
         rss_feed = Feed.new
         rss_feed.feed_url = self
+        rss_feed.site_link = site_link
+        rss_feed.site_title = site_title
         rss_feed.title = (item/:title).inner_html
         rss_feed.link = link
         rss_feed.author = (item/:author).inner_html
@@ -55,11 +62,18 @@ class FeedUrl < ActiveRecord::Base
   def process_atom(atom)
     puts "processing atom"
     time_offset = 1
+    
+    # taking out site/blog link and title.
+    site_link =  (atom/:feed).search(:link).select{ |i| i['type'] == "text/html"}.first['href']
+    site_title = (atom/:feed/:title).first.inner_html
+    
     (atom/:entry).each do |item|
       link = (item/:link).attr('href')
       if !(Feed.find_by_link(link))
         atom_feed = Feed.new
         atom_feed.feed_url = self
+        atom_feed.site_link = site_link
+        atom_feed.site_title = site_title
         atom_feed.title = (item/:title).inner_html
         atom_feed.link = link
         atom_feed.author = (item/:author/:name).inner_html

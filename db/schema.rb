@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 2) do
     t.string   "title"
     t.string   "author"
     t.string   "link"
+    t.string   "site_link"
+    t.string   "site_title"
     t.text     "content"
     t.datetime "published"
     t.datetime "created_at"
