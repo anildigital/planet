@@ -1,5 +1,6 @@
 require 'hpricot'
 require 'open-uri'
+require 'uri'
 
 class FeedUrl < ActiveRecord::Base
   
@@ -44,7 +45,7 @@ class FeedUrl < ActiveRecord::Base
         end
         
         rss_feed.title = htmlize(rss_feed.title)
-        rss_feed.content = htmlize(rss_feed.content)    
+        rss_feed.content = htmlize(rss_feed.content, link)    
         rss_feed.save!
       end
     end
@@ -75,7 +76,7 @@ class FeedUrl < ActiveRecord::Base
         end
         
         atom_feed.title = htmlize(atom_feed.title)
-        atom_feed.content = htmlize(atom_feed.content)
+        atom_feed.content = htmlize(atom_feed.content, link)
         atom_feed.save!
       end
     end
@@ -95,7 +96,7 @@ class FeedUrl < ActiveRecord::Base
     return rss
   end
 
-  def htmlize(string)
+  def htmlize(string, link=nil)
     string.gsub!('&lt;', '<')
     string.gsub!('&gt;', '>')
     string.gsub!('&amp;', '&')
@@ -103,7 +104,17 @@ class FeedUrl < ActiveRecord::Base
     string.gsub!('&quot;', '"')
     # string.gsub!('<![CDATA[', '')
     # string.gsub!(']]>', '')
-    string
+    
+    # for image srcs like <img src="/assets/2008/4/23/rails3.jpg_1208810865" />"
+    # adding host so that they become valid
+    # "<img src="http://www.google.com/assets/2008/4/23/rails3.jpg_1208810865" />"
+    if link
+    host = URI.parse(link).host
+      if host != "feeds.feedburner.com"
+        string.gsub!("src=\"/", "src=\"http://"+host+"/")
+      end
+    end
+    return string
   end
 
 end
