@@ -20,6 +20,7 @@ class FeedUrl < ActiveRecord::Base
     end
   end
 
+   # Process rss feed and saves it into db
   def process_rss(rss)
     puts "processing rss"
     time_offset = 1
@@ -35,17 +36,21 @@ class FeedUrl < ActiveRecord::Base
         rss_feed.content = (item/:description).inner_html
         rss_feed.published = (item/:pubDate).inner_html
 
-        if ! rss_feed.published
-          rss_feed.published = Time.now - time_offset.hours
+        if rss_feed.published.blank?
+          puts "rss feed blank."
+          rss_feed.published = (Time.now - time_offset.hours).to_s(:db)
+          puts rss_feed.published
           time_offset += 1
         end
+        
         rss_feed.title = htmlize(rss_feed.title)
         rss_feed.content = htmlize(rss_feed.content)    
         rss_feed.save!
       end
     end
   end
-
+  
+  # Process atom feed and saves it into db
   def process_atom(atom)
     puts "processing atom"
     time_offset = 1
@@ -60,14 +65,15 @@ class FeedUrl < ActiveRecord::Base
         atom_feed.content = (item/:content).inner_html
         atom_feed.published = (item/:published).inner_html
 
-        if ! atom_feed.content
+        if atom_feed.content.blank?
           atom_feed.content =  (item/:summary).inner_html
         end
 
-        if ! atom_feed.published
-          atom_feed.published =  Time.now - time_offset.hours 
+        if atom_feed.published.blank?
+          atom_feed.published =  (Time.now - time_offset.hours).to_s(:db)
           time_offset += 1
         end
+        
         atom_feed.title = htmlize(atom_feed.title)
         atom_feed.content = htmlize(atom_feed.content)
         atom_feed.save!
@@ -80,7 +86,7 @@ class FeedUrl < ActiveRecord::Base
     rss = ""
     begin
       f = open(self.feed_url, 'r')
-      rss = f.read()
+      rss = f.read()  
       f.close
     rescue Exception => e
       puts e.message
@@ -95,6 +101,8 @@ class FeedUrl < ActiveRecord::Base
     string.gsub!('&amp;', '&')
     string.gsub!('&#39;', "'")
     string.gsub!('&quot;', '"')
+    # string.gsub!('<![CDATA[', '')
+    # string.gsub!(']]>', '')
     string
   end
 

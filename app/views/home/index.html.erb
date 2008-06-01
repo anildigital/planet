@@ -1,7 +1,12 @@
 <div style="width:800px">
-  <% for feed_item in @feeds%>
-      <h2><a href="<%= h feed_item.link %>"> <%= feed_item.title %></a></h2>
-      <p><%=  HTML::WhiteListSanitizer.process_node(CGI::unescapeHTML(feed_item.content)) %></p>
-  <% end %>
-  <%= will_paginate @feeds %>
+	<% if !@feeds.blank? %>
+  	  <% for feed_item in @feeds%>
+        <h2><a href="<%= h feed_item.link %>"> <%= feed_item.title %></a></h2>
+        <p><%= white_list(feed_item.content) %></p>
+     <% end %>
+     <%= will_paginate @feeds %>
+   <% else %>
+	 	There are no feeds added yet.
+	 	<a href="feed_urls">click here</a> to add.
+   <% end %>
 </div>
