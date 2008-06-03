@@ -116,8 +116,8 @@ class FeedUrl < ActiveRecord::Base
     string.gsub!('&amp;', '&')
     string.gsub!('&#39;', "'")
     string.gsub!('&quot;', '"')
-    # string.gsub!('<![CDATA[', '')
-    # string.gsub!(']]>', '')
+    string.gsub!('<![CDATA[', '')
+    string.gsub!(']]>', '')
     
     # for image srcs like <img src="/assets/2008/4/23/rails3.jpg_1208810865" />"
     # adding host so that they become valid
