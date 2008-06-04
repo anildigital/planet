@@ -62,4 +62,4 @@ end
 gem 'mislav-will_paginate', '~> 2.2'
 require 'will_paginate'
 
-WhiteListHelper.tags.delete 'object'
+WhiteListHelper.tags.delete %w(object th)

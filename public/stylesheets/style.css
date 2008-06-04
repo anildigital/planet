@@ -1,0 +1,46 @@
+body {
+	font-family: arial;
+}
+
+#main{
+	width:80%;
+	margin-left:20px;
+}
+
+.post_title {
+	margin-top:10px;  
+	font-weight:bold;
+	font-size:1.1em;
+	padding-left:10px;
+}
+
+.post_entry {
+	text-align:left;
+	padding-left:10px;
+	padding-right:5px;
+}
+
+.div_border {
+	border: 1px solid #bbb;
+	margin: 10px;
+}
+
+.sub {
+	font-size: 0.9em;
+	padding-left:10px;
+}
+
+.pagination{
+	float:left;
+	padding-left:10px;
+}
+
+pre {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left:20px;
+	margin-right:10%;
+	background: #000;
+	color: white;
+	float: auto;
+}
