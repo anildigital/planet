@@ -1,10 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :feed_urls
+  map.resources :home
 
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  map.connect '/search', :controller => 'home', :action => 'search'
+
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

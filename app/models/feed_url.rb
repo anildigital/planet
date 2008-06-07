@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 2
+#
+# Table name: feed_urls
+#
+#  id         :integer(11)     not null, primary key
+#  feed_url   :string(255)
+#  title      :string(255)
+#  star       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'hpricot'
 require 'open-uri'
 require 'uri'
@@ -23,12 +36,12 @@ class FeedUrl < ActiveRecord::Base
 
    # Process rss feed and saves it into db
   def process_rss(rss)
-    puts "processing rss"
     time_offset = 1
     
     # taking out site/blog link and title.
     site_link = (rss/:channel/:link).first.inner_html
     site_title = (rss/:channel/:title).first.inner_html
+    puts "processing rss for #{site_link}"
 
     (rss/:channel/:item).each do |item|
       link = (item/:link).inner_html
@@ -45,10 +58,17 @@ class FeedUrl < ActiveRecord::Base
         rss_feed.published = (item/:pubDate).inner_html
 
         if rss_feed.published.blank?
+          # if !(rss/:channel/:lastBuildDate).inner_html.blank?
+          #            puts "rss feed published time blank. taking lastBuildDate one"
+          #            puts (rss/:channel/:lastBuildDate).inner_html
+          #            time = (rss/:channel/:lastBuildDate).inner_html
+          #            rss_feed.published = Time.parse(time).to_s(:db)
+          #          else
           puts "rss feed published time blank. calculating system one."
-          rss_feed.published = (Time.now - time_offset.hours).to_s(:db)
-          puts rss_feed.published
+          # taking it 20 days back..
+          rss_feed.published = (Time.now - (20*60*60*24) - time_offset.hours).to_s(:db)
           time_offset += 1
+           # end
         end
         
         rss_feed.title = htmlize(rss_feed.title)
@@ -60,12 +80,13 @@ class FeedUrl < ActiveRecord::Base
   
   # Process atom feed and saves it into db
   def process_atom(atom)
-    puts "processing atom"
     time_offset = 1
     
     # taking out site/blog link and title.
-    site_link =  (atom/:feed).search(:link).select{ |i| i['type'] == "text/html"}.first['href']
+    site_link =  (atom/:feed).search(:link)[1]['href']
     site_title = (atom/:feed/:title).first.inner_html
+    
+    puts "processing atom for #{site_link}"
     
     (atom/:entry).each do |item|
       link = (item/:link).attr('href')
@@ -85,7 +106,12 @@ class FeedUrl < ActiveRecord::Base
         end
 
         if atom_feed.published.blank?
-          atom_feed.published =  (Time.now - time_offset.hours).to_s(:db)
+          atom_feed.published =  (item/:updated).inner_html
+        end
+
+        if atom_feed.published.blank?
+          # taking it 20 days back..
+          atom_feed.published =  (Time.now - (20*60*60*24) - time_offset.hours).to_s(:db)
           time_offset += 1
         end
         
@@ -110,6 +136,7 @@ class FeedUrl < ActiveRecord::Base
     return rss
   end
 
+  # htmlize the html codes back.
   def htmlize(string, link=nil)
     string.gsub!('&lt;', '<')
     string.gsub!('&gt;', '>')

@@ -1,24 +1,46 @@
 <div id="main">
-  <div id="hd"><h1>Planet Rails @ Digital Codes</h1></div>
+  <div id="hd"><h1><a href="http://planetrails.digitalcodes.org">PLANET RAILS</a></h1></div>
+  <div id="top">
+    <table border=0 width="100%">
+      <tr>
+        <td align="left">
+           <% if !params[:query].blank? %>
+            <div id="notice">
+              Results for "<%= params[:query] %>"
+            </div>
+          <% end %>
+        </td>
+        <td align="right">
+          <form name="search" action="/search" method="get">
+            <label>Search:</label> <input type="text" name="query" value="<%= params[:query] %>">
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
   <div id="bd">
     <% if !@feeds.blank? %>
       <% for feed_item in @feeds%>
         <div class="div_border">
           <div class="post_title">  
-            <a href="<%= h feed_item.link %>"> <%= feed_item.title %></a>
+            <a href="<%= h feed_item.link %>"><%= feed_item.title %></a>
           </div>
           <div class="sub">
-            Posted <%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <a href="<%= feed_item.site_link%>"><%=feed_item.site_title %></a>
+            Posted <%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <a href="<%= feed_item.site_link%>"><%= feed_item.site_title %></a>
           </div>
           <div class="post_entry">
-            <p><%= white_list(feed_item.content) %></p>
+            <p><%= feed_item.content %></p>
           </div>
         </div>
       <% end %>
-    <% else %>
-      There are no feeds added yet.
+    <% elsif !params[:query].blank? %>
+      <div class="div_border" style="text-align:center">
+        No results found.
+      </div>
+    <% elsif params[:query].blank? %>
+      There are no feeds added yet. <br />
       <a href="feed_urls">click here</a> to add.
     <% end %>
   </div>
-  <div id="ft"><%= will_paginate @feeds, :class => "pagination" %> &nbsp;&nbsp;| this is Digital Codes</div>
+  <div id="ft"><span class="left"><%= will_paginate @feeds, :class => "pagination" %></span><span class="right">Digital Codes</span></div>
 </div>
