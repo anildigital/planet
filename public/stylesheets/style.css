@@ -55,6 +55,7 @@ sub {
 }
 
 #notice{
+	color: #777;
 	float:left;
 }
 
@@ -66,7 +67,6 @@ sub {
 	text-decoration : none;
 	color: black;
 }
-
 
 #ft{
 	padding-bottom:30px;
@@ -80,7 +80,6 @@ sub {
 #bd{
 	display: block;
 }
-
 
 #bd .post{
 	text-decoration: none;

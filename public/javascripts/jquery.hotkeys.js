@@ -39,4 +39,6 @@ jQuery(document).ready(function($) {
     if (el) $.isFunction(el) ? el.call(this) : window.location = el
   })
 
+  $.hotkey('s', function() { window.scrollTo(0,0); s = document.getElementById('search'); s.focus(); });
+
 });

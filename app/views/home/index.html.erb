@@ -9,10 +9,15 @@
               Results for "<%= params[:query] %>"
             </div>
           <% end %>
+          <% if params[:query].blank? and !params[:page].blank? %>
+            <div id="notice">
+               Displaying page <%= params[:page] %>
+            </div>
+          <% end %>
         </td>
         <td align="right">
           <form name="search" action="/search" method="get">
-            <label>Search</label> <input type="text" name="query" value="<%= params[:query] %>">
+            <label>Search</label> <input id="search" type="text" name="query" value="<%= params[:query] %>">
           </form>
         </td>
       </tr>
@@ -29,7 +34,7 @@
             Posted <%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <a href="<%= feed_item.site_link%>"><%= feed_item.site_title %></a>
           </div>
           <div class="post_entry">
-            <p><%= feed_item.content %></p>
+            <p><%= fix_host(feed_item.content, feed_item.site_link) %></p>
           </div>
         </div>
       <% end %>

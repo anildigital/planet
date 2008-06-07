@@ -150,7 +150,7 @@ class FeedUrl < ActiveRecord::Base
     # adding host so that they become valid
     # "<img src="http://www.google.com/assets/2008/4/23/rails3.jpg_1208810865" />"
     if link
-    host = URI.parse(link).host
+      host = URI.parse(link).host
       if host != "feeds.feedburner.com"
         string.gsub!("src=\"/", "src=\"http://"+host+"/")
       end
