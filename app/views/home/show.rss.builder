@@ -4,7 +4,7 @@ xml.rss :version => "2.0" do
 
     xml.title "Planet Rails Feed"
     xml.description "Combines top rails blogs feeds into one."
-    xml.link "http://planetrails.digitalcodes.com/index.rss"
+    xml.link "http://feeds.feedburner.com/PlanetRails"
 
     for feed in @feeds
       xml.item do

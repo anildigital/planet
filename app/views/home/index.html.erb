@@ -1,5 +1,5 @@
 <div id="main">
-  <div id="hd"><h1><a href="http://planetrails.digitalcodes.org">PLANET RAILS</a></h1></div>
+  <div id="hd"><h1><a href="http://planetrails.digitalcodes.org">PLANET RAILS</a> <a href="http://feeds.feedburner.com/PlanetRails"><img src="/images/feed-icon-28x28.png" border="0"></a></h1></div>
   <div id="top">
     <table border=0 width="100%">
       <tr>
@@ -12,7 +12,7 @@
         </td>
         <td align="right">
           <form name="search" action="/search" method="get">
-            <label>Search:</label> <input type="text" name="query" value="<%= params[:query] %>">
+            <label>Search</label> <input type="text" name="query" value="<%= params[:query] %>">
           </form>
         </td>
       </tr>
@@ -42,5 +42,5 @@
       <a href="feed_urls">click here</a> to add.
     <% end %>
   </div>
-  <div id="ft"><span class="left"><%= will_paginate @feeds, :class => "pagination" %></span><span class="right">Digital Codes</span></div>
+  <div id="ft"><span class="left"><%= will_paginate @feeds, :class => "pagination" %></span><span class="right"><a href="http://feeds.feedburner.com/PlanetRails"><img src="http://feeds.feedburner.com/~fc/PlanetRails?bg=CC0000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a> Digital Codes</span></div>
 </div>
