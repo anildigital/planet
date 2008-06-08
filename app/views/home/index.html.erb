@@ -16,7 +16,7 @@
           <% end %>
         </td>
         <td align="right">
-          <form name="search" action="/search" method="get">
+          <form id="search_form" name="search" action="/search" method="get">
             <label>Search</label> <input id="search" type="text" name="query" value="<%= params[:query] %>">
           </form>
         </td>
@@ -47,5 +47,5 @@
       <a href="feed_urls">click here</a> to add.
     <% end %>
   </div>
-  <div id="ft"><span class="left"><%= will_paginate @feeds, :class => "pagination" %></span><span class="right"><a href="http://feeds.feedburner.com/PlanetRails"><img src="http://feeds.feedburner.com/~fc/PlanetRails?bg=CC0000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a> Digital Codes</span></div>
+  <div id="ft"><span class="left"><%= will_paginate @feeds, :class => "digg_pagination" %></span><span class="right"><a href="http://feeds.feedburner.com/PlanetRails"><img src="http://feeds.feedburner.com/~fc/PlanetRails?bg=CC0000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a> Digital Codes</span></div>
 </div>
