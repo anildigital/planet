@@ -1,5 +1,6 @@
 namespace :utils do
   
+  # Populates feeds table.
   task(:populate_feeds => :environment) do
     feed_urls = FeedUrl.find(:all)
 
@@ -11,6 +12,11 @@ namespace :utils do
         puts e.message
       end
     end
-    
   end
+  
+  # Removes duplicate feeds.
+  task(:delete_duplicate_feeds => :environment) do
+    FeedUrl.cleanup_feeds()
+  end
+  
 end
