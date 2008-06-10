@@ -163,7 +163,7 @@ class FeedUrl < ActiveRecord::Base
   def self.cleanup_feeds
      feed_records = FeedUrl.find_by_sql("select count(title) as qty, feeds.id as feed_id from feeds group by title having qty > 1;")
      feed_ids = (feed_records.collect{|i| i.feed_id})
-     FeedUrl.delete(feed_ids)
+     Feed.delete(feed_ids)
   end
 
 end
