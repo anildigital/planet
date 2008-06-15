@@ -9,6 +9,7 @@ class HomeController < ApplicationController
                            :order => "published DESC")
   end
   
+  
   #
   # used to render rss.
   #

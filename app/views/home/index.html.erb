@@ -1,51 +1,79 @@
-<div id="main">
-  <div id="hd"><h1><a href="http://planetrails.digitalcodes.org">PLANET RAILS</a> <a href="http://feeds.feedburner.com/PlanetRails"><img src="/images/feed-icon-28x28.png" border="0"></a></h1></div>
-  <div id="top">
-    <table border=0 width="100%">
-      <tr>
-        <td align="left">
-           <% if !params[:query].blank? %>
-            <div id="notice">
-              Results for "<%= params[:query] %>"
-            </div>
-          <% end %>
-          <% if params[:query].blank? and !params[:page].blank? %>
-            <div id="notice">
-               Displaying page <%= params[:page] %>
-            </div>
-          <% end %>
-        </td>
-        <td align="right">
-          <form id="search_form" name="search" action="/search" method="get">
-            <label>Search</label> <input id="search" type="text" name="query" value="<%= params[:query] %>">
-          </form>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div id="bd">
-    <% if !@feeds.blank? %>
-      <% for feed_item in @feeds%>
-        <div class="div_border">
-          <div class="post_title">  
-            <a href="<%= h feed_item.link %>"><%= feed_item.title %></a>
-          </div>
-          <div class="sub">
-            Posted <%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <a href="<%= feed_item.site_link%>"><%= feed_item.site_title %></a>
-          </div>
-          <div class="post_entry">
-            <p><%= fix_host(feed_item.content, feed_item.site_link) %></p>
+<html>
+  <head>
+    <title>Planet Rails @ Digital Codes</title>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="wrap">
+      <div id="header"><h1><a href="http://planetrails.digitalcodes.org">PLANET RAILS</a> <a href="http://feeds.feedburner.com/PlanetRails"><img src="/images/feed-icon-28x28.png" border="0"></a></h1>
+      </div>
+      <div id="top_wrap">
+        <div class="left_top" id="left_top"><div class="left_top_content">
+            <ul>
+              <% for feed_item in @feeds%>
+                <li><span class="bullet_icon">»</span>&nbsp;<a title="<%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <%= feed_item.site_title %>" href="#<%= MD5::new(feed_item.link )%>"><%= feed_item.title %></a> <!-- <span class="sub grey"><%= distance_of_time_in_words(Time.now, feed_item.published)%> ago</span></li> -->
+              <%end%>
+            </ul>
           </div>
         </div>
-      <% end %>
-    <% elsif !params[:query].blank? %>
-      <div class="div_border" style="text-align:center">
-        No results found.
+        <div class="right_top">
+          <div class="right_top_content"><a href="http://feeds.feedburner.com/PlanetRails"><img src="http://feeds.feedburner.com/~fc/PlanetRails?bg=BBBBBB&amp;fg=000000&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a>
+          </div>
+        </div>
       </div>
-    <% elsif params[:query].blank? %>
-      There are no feeds added yet. <br />
-      <a href="feed_urls">click here</a> to add.
-    <% end %>
-  </div>
-  <div id="ft"><span class="left"><%= will_paginate @feeds, :class => "digg_pagination" %></span><span class="right"><a href="http://feeds.feedburner.com/PlanetRails"><img src="http://feeds.feedburner.com/~fc/PlanetRails?bg=CC0000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a> Digital Codes</span></div>
-</div>
+      
+      <div class="pagination">
+        <%= will_paginate @feeds, :class => "digg_pagination" %>
+      </div>
+      <div id="main">
+		<div id="top_sub_wrap">
+	        <div class="left_sub_top"left sub top>
+	          <div id="notice">
+	            <% if !params[:query].blank? %>
+	              Results for "<%= params[:query] %>"
+	            <% end %>
+	            <% if params[:query].blank? and !params[:page].blank? %>
+	              Displaying page <%= params[:page] %>   
+	            <% end %>
+	          </div>
+	        </div>
+	        <div class="right_sub_top">
+	          <form id="search_form" name="search" action="/search" method="get">
+	            <label>Search</label> <input id="search" type="text" name="query" value="<%= params[:query] %>">
+	          </form>
+	        </div>
+	      </div>
+        <% if !@feeds.blank? %>
+          <% for feed_item in @feeds%>
+            <a name="<%= MD5.new(feed_item.link )%>"></a>
+            <div class="post">
+              <div class="title"><a href="<%= h feed_item.link %>"><%= feed_item.title %></a></div>
+              <div class="sub">
+                Posted <%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <a href="<%= feed_item.site_link%>"><%= feed_item.site_title %></a>
+              </div>
+              <div class="entry">
+                <p><%= fix_host(feed_item.content, feed_item.site_link) %></p>
+              </div>
+              <div class="entry_bottom"><a href="#top">back to top</a></div>
+            </div>
+          <% end %>
+
+        <% elsif !params[:query].blank? %>
+          <div class="post" style="text-align:center">
+            No results found.
+          </div>
+        <% elsif params[:query].blank? %>
+          There are no feeds added yet. <br />
+          <a href="feed_urls">click here</a> to add.
+        <%end%>
+      </div>
+      <div class="pagination">
+        <%= will_paginate @feeds, :class => "digg_pagination" %>
+      </div>
+      <div id="footer">© The contents of this website are copyrighted by respective blog owners. this is Digital Codes</div>
+    </div>
+	<script>
+		$('#left_top a').tooltip({showURL: false});
+	</script>
+  </body>
+</html>

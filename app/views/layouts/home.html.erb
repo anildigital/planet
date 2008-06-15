@@ -3,9 +3,9 @@
 <html>
   <head>
     <title>Planet Rails @ Digital Codes</title>
-    <%= stylesheet_link_tag 'style', 'pagination'%>
+    <%= stylesheet_link_tag 'style', 'pagination', 'jquery.tooltip'%>
     <link rel="alternate" type="application/rss+xml" title="Planet Rails Feed" href="http://feeds.feedburner.com/PlanetRails" /> 
-    <%= javascript_include_tag 'jquery-1.2.6', 'jquery.hotkeys.js' %>
+    <%= javascript_include_tag 'jquery-1.2.6', 'jquery.dimensions', 'jquery.bgiframe', 'jquery.tooltip', 'jquery.hotkeys.js' %>
   </head>
   <body
     <%= yield %>
