@@ -44,7 +44,8 @@ class FeedUrl < ActiveRecord::Base
     puts "processing rss for #{site_link}"
 
     (rss/:channel/:item).each do |item|
-      link = (item/:link).inner_html
+      link_raw = item.%('feedburner:origLink') || item.%('link') || (item/:link)
+      link = link_raw.inner_html
 
       if ! (Feed.find_by_link(link))
         rss_feed = Feed.new
@@ -89,7 +90,14 @@ class FeedUrl < ActiveRecord::Base
     puts "processing atom for #{site_link}"
     
     (atom/:entry).each do |item|
-      link = (item/:link).attr('href')
+      link_raw = item.%('feedburner:origLink') || item.%('link')
+      
+      if !link_raw.blank?
+        link = (link_raw).inner_html
+      else
+        link = (item/:link).attr('href')
+      end
+      
       if !(Feed.find_by_link(link))
         atom_feed = Feed.new
         atom_feed.feed_url = self
