@@ -47,7 +47,7 @@ class FeedUrl < ActiveRecord::Base
       link_raw = item.%('feedburner:origLink') || item.%('link') || (item/:link)
       link = link_raw.inner_html
 
-      if ! (Feed.find_by_link(link))
+      if (Feed.find_by_link(link)).blank?
         rss_feed = Feed.new
         rss_feed.feed_url = self
         rss_feed.site_link = site_link
@@ -98,7 +98,7 @@ class FeedUrl < ActiveRecord::Base
         link = (item/:link).attr('href')
       end
       
-      if !(Feed.find_by_link(link))
+      if (Feed.find_by_link(link)).blank?
         atom_feed = Feed.new
         atom_feed.feed_url = self
         atom_feed.site_link = site_link
