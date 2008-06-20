@@ -9,9 +9,9 @@ body {
 	font-family:arial;
 	font-size: 0.9em;
     }
+
 img {
 	border: 0px;
-	margin-bottom:10px;
 }
 
 #wrap {
@@ -114,6 +114,10 @@ img {
 	padding: 20px;
 	margin: 10px 20px 20px;
 	background: #efefef;
+}
+
+.post img{
+	margin-bottom:10px;
 }
 
 .title{
