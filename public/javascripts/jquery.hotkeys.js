@@ -40,5 +40,47 @@ jQuery(document).ready(function($) {
   })
 
   $.hotkey('s', function() { window.scrollTo(0,0); s = document.getElementById('search'); s.focus(); });
+  
+  step = 0;
+  j_typed = false;
+  k_typed = false;
 
+  $.hotkey('j', function() { 
+ 	
+	if(step < (linksArray.length - 1)){
+			step = step + 1;
+	}
+	if( (j_typed == false) && (k_typed == false)){
+		step = 0;
+	}
+	hash = linksArray[step];
+	window.location = "#"+ hash;
+	
+	j_typed = true;
+	k_typed = false;
+	
+	});
+	
+  $.hotkey('k', function() { 
+
+	k_typed = true;
+
+	 if (step != 0) {
+		if(step == 1){
+			step = step - 1;
+		}
+		else if (j_typed = true){
+			step = step - 1;
+		}
+		else {
+			step = step - 1;
+		}
+	}
+	hash = linksArray[(step)];
+	window.location = "#"+ hash;
+	
+	k_typed = true;
+	j_typed = false;
+
+	});
 });
