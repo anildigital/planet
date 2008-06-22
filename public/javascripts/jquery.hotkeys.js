@@ -105,10 +105,8 @@ jQuery(document).ready(function($) {
 		else if (j_typed = true){
 			step = step - 1;
 		}
-		else {
-			step = step - 1;
-		}
 	}
+	
 	hash = linksArray[(step)];
 	window.location = "#"+ hash;
 	
