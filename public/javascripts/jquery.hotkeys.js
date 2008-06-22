@@ -42,7 +42,7 @@ jQuery(document).ready(function($) {
  $.hotkey('s', function() { window.scrollTo(0,0); s = document.getElementById('search');  s.focus(); });
 
  $.hotkey('h', function(){
-	loading_msg = "Loading";
+	loading_msg = "Loading...";
   	href = $("a[rel=prev]").attr("href");
 	if (href != undefined) {
 	  //$('#notice').css("color","red");
@@ -60,7 +60,7 @@ jQuery(document).ready(function($) {
   });
 
   $.hotkey('l', function(){
-	loading_msg = "Loading";
+	loading_msg = "Loading...";
   	href = $("a[rel=next]").attr("href");
 	if (href != undefined) {
 	 //$('#notice').css("color","red");
