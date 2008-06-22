@@ -39,15 +39,46 @@ jQuery(document).ready(function($) {
     if (el) $.isFunction(el) ? el.call(this) : window.location = el
   })
 
-  $.hotkey('s', function() { window.scrollTo(0,0); s = document.getElementById('search'); s.focus(); });
+ $.hotkey('s', function() { window.scrollTo(0,0); s = document.getElementById('search');  s.focus(); });
 
-  $.hotkey('t', function(){
-	window.location = "#top";
-  } );
-  
+ $.hotkey('h', function(){
+  	href = $("a[rel=prev]").attr("href");
+	if (href != undefined) {
+	  window.location = href;
+	}
+	else {
+	  href = $("a[rel=prev start]").attr("href");
+	  if (href != undefined) {
+	    window.location = href;
+	  }
+	}
+  });
+
+  $.hotkey('l', function(){
+  	href = $("a[rel=next]").attr("href");
+	if (href != undefined) {
+	  window.location = href;
+	}	
+  });
+ 
   step = 0;
   j_typed = false;
   k_typed = false;
+
+  $.hotkey('t', function(){
+	window.location = "#top";
+	step = 0;
+	j_typed = false;
+	k_typed = false;
+  } );
+
+
+  $.hotkey('d', function(){
+	window.location = "#down";
+	step = 0;
+	j_typed = false;
+	k_typed = false;
+  } );
 
   $.hotkey('j', function() { 
  	
@@ -66,9 +97,7 @@ jQuery(document).ready(function($) {
 	});
 	
   $.hotkey('k', function() { 
-
-	k_typed = true;
-
+	
 	 if (step != 0) {
 		if(step == 1){
 			step = step - 1;
