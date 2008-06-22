@@ -40,6 +40,10 @@ jQuery(document).ready(function($) {
   })
 
   $.hotkey('s', function() { window.scrollTo(0,0); s = document.getElementById('search'); s.focus(); });
+
+  $.hotkey('t', function(){
+	window.location = "#top";
+  } );
   
   step = 0;
   j_typed = false;
