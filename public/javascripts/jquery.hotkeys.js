@@ -42,21 +42,29 @@ jQuery(document).ready(function($) {
  $.hotkey('s', function() { window.scrollTo(0,0); s = document.getElementById('search');  s.focus(); });
 
  $.hotkey('h', function(){
+	loading_msg = "Loading";
   	href = $("a[rel=prev]").attr("href");
 	if (href != undefined) {
+	  //$('#notice').css("color","red");
+	  $('#notice').html(loading_msg);
 	  window.location = href;
 	}
 	else {
 	  href = $("a[rel=prev start]").attr("href");
 	  if (href != undefined) {
+		//$('#notice').css("color","red");
+		$('#notice').html(loading_msg);
 	    window.location = href;
 	  }
 	}
   });
 
   $.hotkey('l', function(){
+	loading_msg = "Loading";
   	href = $("a[rel=next]").attr("href");
 	if (href != undefined) {
+	 //$('#notice').css("color","red");
+	 $('#notice').html(loading_msg);
 	  window.location = href;
 	}	
   });
