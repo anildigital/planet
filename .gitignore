@@ -1,3 +1,6 @@
 tmp
 log
 vendor
+*~
+\#*#
+TAGS
