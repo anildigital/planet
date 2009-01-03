@@ -16,7 +16,7 @@ require 'open-uri'
 require 'uri'
 
 class FeedUrl < ActiveRecord::Base
-  
+
   has_many :feeds, :dependent => :delete_all
   validates_presence_of :feed_url
   validates_presence_of :title
@@ -34,10 +34,10 @@ class FeedUrl < ActiveRecord::Base
     end
   end
 
-   # Process rss feed and saves it into db
+  # Process rss feed and saves it into db
   def process_rss(rss)
     time_offset = 1
-    
+
     # taking out site/blog link and title.
     site_link = (rss/:channel/:link).first.inner_html
     site_title = (rss/:channel/:title).first.inner_html
@@ -56,6 +56,12 @@ class FeedUrl < ActiveRecord::Base
         rss_feed.link = link
         rss_feed.author = (item/:author).inner_html
         rss_feed.content = (item/:description).inner_html
+        if !(item/"content:encoded").blank?
+          rss_feed.content = (item/"content:encoded").inner_html
+        else
+          rss_feed.content = (item/:description).inner_html
+        end
+
         rss_feed.published = (item/:pubDate).inner_html
 
         if rss_feed.published.blank?
@@ -69,35 +75,35 @@ class FeedUrl < ActiveRecord::Base
           # taking it 20 days back..
           rss_feed.published = (Time.now - (20*60*60*24) - time_offset.hours).to_s(:db)
           time_offset += 1
-           # end
+          # end
         end
-        
+
         rss_feed.title = htmlize(rss_feed.title)
-        rss_feed.content = htmlize(rss_feed.content, link)    
+        rss_feed.content = htmlize(rss_feed.content, link)
         rss_feed.save!
       end
     end
   end
-  
+
   # Process atom feed and saves it into db
   def process_atom(atom)
     time_offset = 1
-    
+
     # taking out site/blog link and title.
     site_link =  (atom/:feed).search(:link)[1]['href']
     site_title = (atom/:feed/:title).first.inner_html
-    
+
     puts "processing atom for #{site_link}"
-    
+
     (atom/:entry).each do |item|
       link_raw = item.%('feedburner:origLink') || item.%('link')
-      
+
       if !link_raw.blank?
         link = (link_raw).inner_html
       else
         link = (item/:link).attr('href')
       end
-      
+
       if (Feed.find_by_link(link)).blank?
         atom_feed = Feed.new
         atom_feed.feed_url = self
@@ -122,7 +128,7 @@ class FeedUrl < ActiveRecord::Base
           atom_feed.published =  (Time.now - (20*60*60*24) - time_offset.hours).to_s(:db)
           time_offset += 1
         end
-        
+
         atom_feed.title = htmlize(atom_feed.title)
         atom_feed.content = htmlize(atom_feed.content, link)
         atom_feed.save!
@@ -135,7 +141,7 @@ class FeedUrl < ActiveRecord::Base
     rss = ""
     begin
       f = open(self.feed_url, 'r')
-      rss = f.read()  
+      rss = f.read()
       f.close
     rescue Exception => e
       puts e.message
@@ -153,7 +159,7 @@ class FeedUrl < ActiveRecord::Base
     string.gsub!('&quot;', '"')
     string.gsub!('<![CDATA[', '')
     string.gsub!(']]>', '')
-    
+
     # for image srcs like <img src="/assets/2008/4/23/rails3.jpg_1208810865" />"
     # adding host so that they become valid
     # "<img src="http://www.google.com/assets/2008/4/23/rails3.jpg_1208810865" />"
@@ -169,9 +175,9 @@ class FeedUrl < ActiveRecord::Base
   ## Removed duplicate entries
   ## Currently based on feed title. #TODO make it more correct.
   def self.cleanup_feeds
-     feed_records = FeedUrl.find_by_sql("select count(title) as qty, feeds.id as feed_id from feeds group by title having qty > 1;")
-     feed_ids = (feed_records.collect{|i| i.feed_id})
-     Feed.delete(feed_ids)
+    feed_records = FeedUrl.find_by_sql("select count(title) as qty, feeds.id as feed_id from feeds group by title having qty > 1;")
+    feed_ids = (feed_records.collect{|i| i.feed_id})
+    Feed.delete(feed_ids)
   end
 
 end
