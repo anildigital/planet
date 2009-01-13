@@ -5,7 +5,7 @@ set :deploy_via, :remote_cache
 set :deploy_to, "/home/anil/public_html/#{application}"
 set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 
-set :port, 2222
+set :port, 22
 
 set :scm, :git
 
