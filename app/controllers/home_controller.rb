@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+
+  
   #
   # index
   #
@@ -7,6 +9,8 @@ class HomeController < ApplicationController
                            :per_page => 15, 
                            :page => params[:page], 
                            :order => "published DESC")
+    
+    expires_in 5.minutes, :private => false, :public => true
   end
   
   

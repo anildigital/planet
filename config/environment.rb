@@ -10,10 +10,17 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+require 'rack/cache'
+
 Rails::Initializer.run do |config|
   
   config.middleware.use "ResponseTimer"
   
+  config.middleware.use Rack::Cache,
+         :verbose => true,
+         :metastore   => 'file:/var/cache/rack/meta',
+         :entitystore => 'file:/var/cache/rack/body'
+    
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
