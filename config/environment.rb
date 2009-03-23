@@ -14,7 +14,7 @@ require 'rack/cache'
 
 Rails::Initializer.run do |config|
   
-  config.middleware.use "ResponseTimer"
+  config.middleware.use "ResponseTimer", "Load Time"
   
   config.middleware.use Rack::Cache,
          :verbose => true,
