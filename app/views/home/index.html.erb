@@ -48,7 +48,7 @@
                Posted <%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <a href="<%= feed_item.site_link%>"><%= feed_item.site_title %></a>
              </div>
              <div class="entry">
-               <p><%= fix_host(feed_item.content, feed_item.site_link) %></p>
+               <p><%= raw fix_host(feed_item.content, feed_item.site_link) %></p>
              </div>
              <div class="entry_bottom"><a href="#top">back to top</a></div>
            </div>
