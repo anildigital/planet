@@ -18,7 +18,6 @@ gem "sqlite3-ruby", :require => "sqlite3"
 # gem "aws-s3", :require => "aws/s3"
 
 gem 'will_paginate'
-gem 'ruby-debug'
 gem 'mysql'
 gem 'hpricot'
 ## Bundle gems used only in certain environments:
