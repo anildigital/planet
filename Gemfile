@@ -20,9 +20,7 @@ gem "sqlite3-ruby", :require => "sqlite3"
 gem 'will_paginate'
 gem 'mysql'
 gem 'hpricot'
-gem "cgi_multipart_eof_fix" 
-gem "fastthread" 
-gem "mongrel_experimental"
+
 ## Bundle gems used only in certain environments:
 # gem "rspec", :group => :test
 # group :test do
