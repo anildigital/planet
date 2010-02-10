@@ -10,11 +10,23 @@
     float: left;
     margin-right: 1px; 
 }
+
+.digg_pagination em {
+    padding: .1em .4em;
+    display: block;
+    float: left;
+    margin-right: 1px; 
+    background: #666;
+	color: white;
+ 	border: 1px solid #aaa;	
+	font-weight: bold;
+}
+
 .digg_pagination span.disabled {
     color: #aaa;
     border: 1px solid #aaa; 
 }
-.digg_pagination span.current {
+.digg_pagination span.current, .digg_pagination span.current em {
     font-weight: bold;
     background: #666;
     color: white;

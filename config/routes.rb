@@ -16,7 +16,13 @@ Planet::Application.routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   
-  resources :home
+  resources :home, :controller => :home do
+    collection do 
+      get :show 
+      get :index
+    end
+  end
+  
   resources :feed_urls
 
   # Sample resource route with options:

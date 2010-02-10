@@ -17,11 +17,9 @@ class Feed < ActiveRecord::Base
   #  updated_at  :datetime
   #
 
-  class Feed < ActiveRecord::Base
-    belongs_to :feed_url
-    validates_uniqueness_of :title, :scope => [:link]
-    validates_presence_of :feed_url_id
-    validates_numericality_of :feed_url_id
-  end
+  belongs_to :feed_url
+  validates_uniqueness_of :title, :scope => [:link]
+  validates_presence_of :feed_url_id
+  validates_numericality_of :feed_url_id
 
 end

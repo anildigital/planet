@@ -11,10 +11,6 @@
 #  updated_at :datetime
 #
 
-require 'hpricot'
-require 'open-uri'
-require 'uri'
-
 class FeedUrl < ActiveRecord::Base
 
   has_many :feeds, :dependent => :delete_all
