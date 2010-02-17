@@ -1,14 +1,14 @@
 body,
 html {
-    margin:0;
-    padding:0;
-    color:#000;
-    }
+	margin:0;
+	padding:0;
+	color:#000;
+}
 body {
-    min-width:750px;
+	min-width:750px;
 	font-family:arial;
 	font-size: 0.9em;
-    }
+}
 
 img {
 	border: 0px;
@@ -16,8 +16,8 @@ img {
 
 
 #wrap {
-    margin:0pt auto;
-    max-width:1000px;
+	margin:0pt auto;
+	max-width:1000px;
 	border: 1px solid;
 }
 
@@ -47,7 +47,7 @@ img {
 	background: #bbb;
 	border: 1px 0px 1px solid;
 	padding: 10px;
-    }
+}
 
 #top_wrap{
 	margin-top:10px;
@@ -66,7 +66,7 @@ img {
 	width:495px;
 	font-size: 0.9em;
 	border-right: #ccc 1px solid;
- }
+}
 .left_top a{
 	text-decoration: none;
 }
@@ -78,13 +78,13 @@ img {
 }
 
 .left_top ul{
-		list-style: none;
-		text-indent: -1.2em;	
+	list-style: none;
+	text-indent: -1.2em;	
 }
 .right_top {
 	float:right;
 	width:495px;
-    }
+}
 
 .left_top_content{
 	margin-left:10px;
@@ -108,7 +108,7 @@ img {
 
 }
 .right_sub_top_content{
-	
+
 }
 
 .post {
@@ -117,11 +117,29 @@ img {
 	background: #efefef;
 }
 
+.feedflare {
+	visibility:hidden;
+}
+.star_post {
+	background: transparent url(/images/bg_post.png) repeat;
+	color: #eee;	
+}
+
+.star_post a, .star_post a:visited {
+	color: #eee;	
+}
+
+.star_post .title a, .star_post .title a:visited{
+	color: #E0115F;
+}
+
 .post img{
 	margin-bottom:10px;
 }
 
 .title{
+	float:left;
+	width:95%;
 	font-size:1.2em;
 }
 
@@ -129,7 +147,13 @@ img {
 	text-decoration:none;
 	font-weight:bold;
 }
+.star {
+	float:right;
+	text-align:right;
+	width:5%;
+}
 .sub {
+	clear:both;
 	font-size: 0.8em;
 }
 .grey{
@@ -142,14 +166,14 @@ img {
 #footer {
 	clear:both;
 	margin-top:10px;
-    background:#ccc;
+	background:#ccc;
 	text-align: center;
-    }
+}
 #footer p {
-    padding:5px;
-    margin:0;
+	padding:5px;
+	margin:0;
 	border: 1px solid;
-    }
+}
 
 #search_form #search{
 	background: transparent url(/images/search.gif) no-repeat left;

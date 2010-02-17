@@ -1,11 +1,21 @@
 <p>
-  <b>Feed url:</b>
-  <%=h @feed_url.feed_url %>
+	<b>Site url:</b>
+	<%=h @feed_url.site_url %>
 </p>
 
 <p>
-  <b>Title:</b>
-  <%=h @feed_url.title %>
+	<b>Feed url:</b>
+	<%=h @feed_url.feed_url %>
+</p>
+
+<p>
+	<b>Title:</b>
+	<%=h @feed_url.title %>
+</p>
+
+<p>
+	<b>Star:</b>
+	<%if  @feed_url.star %><%= image_tag("favorite.png")%><%end%>
 </p>
 
 
