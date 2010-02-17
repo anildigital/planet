@@ -20,6 +20,7 @@ Planet::Application.routes.draw do |map|
     collection do 
       get :show 
       get :index
+      get :channels
     end
   end
   

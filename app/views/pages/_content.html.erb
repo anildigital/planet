@@ -18,9 +18,15 @@
        </div>
      </div>
     
+	<div class="section_left">
      <div class="pagination">
        <%= will_paginate @feeds, :class => "digg_pagination" %>
      </div>
+	</div>
+	<div class="section_right">
+		<a rel="facebox" href="/pages/channels" onclick="return false;">Channels</a>
+	</div>
+
      <div id="main">
 	<div id="top_sub_wrap">
         <div class="left_sub_top"left sub top>

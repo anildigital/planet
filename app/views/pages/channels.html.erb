@@ -1,0 +1,20 @@
+<div class="channels_title">
+	Channels
+</div>
+<table border="0" width="100%">
+	<tbody>
+		<tr>
+			<th width="5%"></th>
+			<th width="55%"></th>
+			<th width="40%"></th>
+		</tr>
+		<% for feed_url in @feed_urls %>
+		<tr>
+			<td><% if feed_url.star %><img src="/images/favorite.png"><% end %></td>
+
+			<td><%= feed_url.title %></td>
+			<td><a href="<%= feed_url.site_url %>" onclick="javascript://"><%= feed_url.site_url %></a></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

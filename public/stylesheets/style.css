@@ -48,6 +48,7 @@ img {
 	background: #bbb;
 	border: 1px 0px 1px solid;
 	padding: 10px;
+	clear:both;
 }
 
 #top_wrap{
@@ -110,6 +111,17 @@ img {
 }
 .right_sub_top_content{
 
+}
+.section_left {
+	float:left;
+	width:70%;
+}
+.section_right{
+	float:right;
+	padding-right:30px;
+	padding-top:15px;
+	text-align:right;
+	width:20%;
 }
 
 .post {
@@ -203,4 +215,9 @@ pre{
 	padding-top: 10px;
 	padding-bottom: 5px;
 	margin-left:30px;
+}
+
+.channels_title {
+	font-weight:bold;
+	margin: 2px 0px 5px 2px;
 }
