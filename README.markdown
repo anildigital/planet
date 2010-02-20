@@ -23,5 +23,5 @@ Special Thanks
 
 Sites referred
 
-[1]: http://planetrubyonrails.com
-[2]: http://planetrubyonrails.org (Non existant now.)
+* http://planetrubyonrails.com
+* http://planetrubyonrails.org (Non existant now)
