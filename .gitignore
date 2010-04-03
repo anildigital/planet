@@ -6,3 +6,4 @@ TAGS
 .DS_Store
 temp
 nbproject
+vendor/rails

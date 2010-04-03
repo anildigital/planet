@@ -2,7 +2,7 @@
 source 'http://gemcutter.org'
 
 
-gem "rails", "3.0.0.beta"
+gem "rails", "3.0.0.beta2"
 
 ## Bundle edge rails:
 # gem "rails", :git => "git://github.com/rails/rails.git"
@@ -17,9 +17,8 @@ gem "sqlite3-ruby", :require => "sqlite3"
 # gem "sqlite3-ruby", :require => "sqlite3"
 # gem "aws-s3", :require => "aws/s3"
 
-gem 'will_paginate'
+gem 'will_paginate', '3.0.pre'
 gem 'mysql'
-gem 'hpricot'
 gem 'hpricot'
 require 'open-uri'
 require 'uri'
