@@ -2,7 +2,7 @@ set :application, "planetrails.digitalcodes.org"
 set :repository,  "git://github.com/anildigital/planet.git"
 
 set :deploy_via, :remote_cache 
-set :deploy_to, "/home/anil/public_html/#{application}"
+set :deploy_to, "/var/www/#{application}"
 #set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 
 set :port, 22
