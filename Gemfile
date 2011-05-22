@@ -16,7 +16,7 @@ gem 'jquery-rails'
 
 
 gem 'kaminari'
-gem 'mysql'
+gem 'mysql2'
 gem 'hpricot'
 require 'open-uri'
 require 'uri'
