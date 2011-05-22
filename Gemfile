@@ -20,7 +20,7 @@ gem 'mysql'
 gem 'hpricot'
 require 'open-uri'
 require 'uri'
-require 'digest/md5'
+require 'digest/sha1'
 
 # Use unicorn as the web server
 # gem 'unicorn'

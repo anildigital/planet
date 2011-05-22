@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   # index
   #
   def index
-    @feeds = Feed.page params[:page]
+    @feeds = Feed.order("updated_at DESC").page params[:page]
     expires_in 5.minutes, :private => false, :public => true
   end
   
@@ -21,11 +21,7 @@ class PagesController < ApplicationController
   def search
     query = params[:query]
     query = (query && query.strip) || ""
-    @feeds = Feed.paginate(:all, 
-                           :conditions => ["content like ? or title like ?", "%"+query+"%", "%"+query+"%"], 
-                           :per_page => 15, 
-                           :page => params[:page], 
-                           :order => "published DESC")
+    @feeds = Feed.where(["content like ? or title like ?", "%"+query+"%", "%"+query+"%"]).order("published DESC").page params[:page]
     render :action => "index"
   end
   

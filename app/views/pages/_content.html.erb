@@ -5,8 +5,10 @@
      <div id="top_wrap">
        <div class="left_top" id="left_top"><div class="left_top_content">
            <ul> <% @link_array = []%>
-             <% for feed_item in @feeds%> <% @link_array << Digest::MD5::new(feed_item.link )%>
-               <li><span class="bullet_icon">»</span>&nbsp;<a title="<%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <%= feed_item.site_title %>" href="#<%= Digest::MD5::new(feed_item.link )%>"><%= raw(feed_item.title) %></a> <!-- <span class="sub grey"><%= distance_of_time_in_words(Time.now, feed_item.published)%> ago</span></li> -->
+             <% for feed_item in @feeds%>
+              <% @sha_hash = Digest::SHA1::hexdigest(feed_item.link) %>
+              <% @link_array << @sha_hash %>
+               <li><span class="bullet_icon">»</span>&nbsp;<a title="<%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <%= feed_item.site_title %>" href="#<%= @sha_hash %>"><%= raw(feed_item.title) %></a> <!-- <span class="sub grey"><%= distance_of_time_in_words(Time.now, feed_item.published)%> ago</span></li> -->
              <%end%>
            </ul>
          </div>
@@ -47,7 +49,7 @@
       </div>
        <% if !@feeds.blank? %>
          <% for feed_item in @feeds%>
-           <div><a name="<%= Digest::MD5.new(feed_item.link )%>"></a></div>
+           <div><a name="<%= Digest::SHA1::hexdigest(feed_item.link )%>"></a></div>
            <div class="post <% if feed_item.feed_url and feed_item.feed_url.star %>star_post<% end %>">
              <div class="title"><a href="<%= h feed_item.link %>"><%= raw (feed_item.title) %></a></div>
 			 <% if feed_item.feed_url and feed_item.feed_url.star %><div class="star"><%= image_tag("favorite.png")%></a></div><% end%>
