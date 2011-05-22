@@ -22,6 +22,8 @@ require 'open-uri'
 require 'uri'
 require 'digest/sha1'
 
+gem 'therubyracer'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
