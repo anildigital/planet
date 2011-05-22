@@ -1,4 +1,4 @@
-set :application, "planetrails.digitalcodes.org"
+set :application, "planetrubyonrails.net"
 set :repository,  "git://github.com/anildigital/planet.git"
 
 set :deploy_via, :remote_cache 
