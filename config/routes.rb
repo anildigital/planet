@@ -1,17 +1,15 @@
-Planet::Application.routes.draw do |map|
+Planet::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  
-  # Sample of regular route:
-   match 'search' => 'pages#search'
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
+  match 'search' => 'pages#search'
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -29,12 +27,12 @@ Planet::Application.routes.draw do |map|
   # Sample resource route with options:
   #   resources :products do
   #     member do
-  #       get :short
-  #       post :toggle
+  #       get 'short'
+  #       post 'toggle'
   #     end
   #
   #     collection do
-  #       get :sold
+  #       get 'sold'
   #     end
   #   end
 
@@ -48,7 +46,7 @@ Planet::Application.routes.draw do |map|
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get :recent, :on => :collection
+  #       get 'recent', :on => :collection
   #     end
   #   end
 
@@ -61,7 +59,8 @@ Planet::Application.routes.draw do |map|
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "pages#index"
+  # root :to => 'welcome#index'
+  root :to => "pages#index"  
 
   # See how all your routes lay out with "rake routes"
 

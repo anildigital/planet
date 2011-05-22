@@ -1,33 +1,6 @@
 <h1>Editing feed_url</h1>
 
-<%= error_messages_for :feed_url %>
-
-<% form_for(@feed_url) do |f| %>
-
-<p>
-	<b>Site url</b><br />
-	<%= f.text_field :site_url %>
-</p>
-
-<p>
-	<b>Feed url</b><br />
-	<%= f.text_field :feed_url %>
-</p>
-
-<p>
-	<b>Title</b><br />
-	<%= f.text_field :title %>
-</p>
-
-<p>
-	<b>Star</b><br />
-	<%= f.check_box :star %>
-</p>
-
-<p>
-	<%= f.submit "Update" %>
-</p>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Show', @feed_url %> |
 <%= link_to 'Back', feed_urls_path %>

@@ -3,5 +3,3 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Planet::Application.initialize!
-
-WhiteListHelper.tags.delete %w(object th)

@@ -1,6 +1,6 @@
 namespace :utils do
   
-  # Populates feeds table.
+  desc "Populates feeds table"
   task(:populate_feeds => :environment) do
     feed_urls = FeedUrl.find(:all)
 

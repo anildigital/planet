@@ -1,0 +1,33 @@
+<%= form_for(@feed_url) do |f| %>
+  <% if @feed_url.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feed_url.errors.count, "error") %> prohibited this feed_url from being saved:</h2>
+
+      <ul>
+      <% @feed_url.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :site_url %><br />
+    <%= f.text_field :site_url %>
+  </div>
+  <div class="field">
+    <%= f.label :feed_url %><br />
+    <%= f.text_field :feed_url %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :star %><br />
+    <%= f.check_box :star %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

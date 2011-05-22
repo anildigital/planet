@@ -1,12 +1,12 @@
 <a name="top"></a>
    <div id="wrap">
-     <div id="header"><h1><a href="http://planetrubyonrails.net">PLANET RUBY ON RAILS</a> <a href="http://feeds.feedburner.com/PlanetRails"><img src="/images/feed-icon-28x28.png" border="0"></a></h1>
+     <div id="header"><h1><a href="http://planetrubyonrails.net">PLANET RUBY ON RAILS</a> <a href="http://feeds.feedburner.com/PlanetRails"><%= image_tag "feed-icon-28x28.png" %></a></h1>
      </div>
      <div id="top_wrap">
        <div class="left_top" id="left_top"><div class="left_top_content">
            <ul> <% @link_array = []%>
-             <% for feed_item in @feeds%> <% @link_array << MD5::new(feed_item.link )%>
-               <li><span class="bullet_icon">»</span>&nbsp;<a title="<%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <%= feed_item.site_title %>" href="#<%= MD5::new(feed_item.link )%>"><%= raw(feed_item.title) %></a> <!-- <span class="sub grey"><%= distance_of_time_in_words(Time.now, feed_item.published)%> ago</span></li> -->
+             <% for feed_item in @feeds%> <% @link_array << Digest::MD5::new(feed_item.link )%>
+               <li><span class="bullet_icon">»</span>&nbsp;<a title="<%= distance_of_time_in_words(Time.now, feed_item.published)%> ago at <%= feed_item.site_title %>" href="#<%= Digest::MD5::new(feed_item.link )%>"><%= raw(feed_item.title) %></a> <!-- <span class="sub grey"><%= distance_of_time_in_words(Time.now, feed_item.published)%> ago</span></li> -->
              <%end%>
            </ul>
          </div>
@@ -20,7 +20,7 @@
     
 	<div class="section_left">
      <div class="pagination">
-       <%= will_paginate @feeds, :class => "digg_pagination" %>
+       <%= paginate @feeds %>
      </div>
 	</div>
 	<div class="section_right">
@@ -47,7 +47,7 @@
       </div>
        <% if !@feeds.blank? %>
          <% for feed_item in @feeds%>
-           <div><a name="<%= MD5.new(feed_item.link )%>"></a></div>
+           <div><a name="<%= Digest::MD5.new(feed_item.link )%>"></a></div>
            <div class="post <% if feed_item.feed_url and feed_item.feed_url.star %>star_post<% end %>">
              <div class="title"><a href="<%= h feed_item.link %>"><%= raw (feed_item.title) %></a></div>
 			 <% if feed_item.feed_url and feed_item.feed_url.star %><div class="star"><%= image_tag("favorite.png")%></a></div><% end%>
@@ -71,7 +71,7 @@
        <%end%>
      </div>
      <div class="pagination">
-       <%= will_paginate @feeds, :class => "digg_pagination" %>
+         <%= paginate @feeds %>
      </div>
      <div id="footer">© The contents of this website are copyrighted by respective blog owners. this is <a href="http://digitalcodes.org"/> Digital Codes </a></div>
    </div>

@@ -1,26 +1,29 @@
 <h1>Listing feed_urls</h1>
 
 <table>
-	<tr>
-		<th>Site url</th>
-		<th>Feed url</th>
-		<th>Title</th>
-		<th>Star</th>
-	</tr>
+  <tr>
+    <th>Site url</th>
+    <th>Feed url</th>
+    <th>Title</th>
+    <th>Star</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
-	<% for feed_url in @feed_urls %>
-	<tr>
-		<td><%=h feed_url.site_url %></td>
-		<td><%=h feed_url.feed_url %></td>
-		<td><%=h feed_url.title %></td>
-		<td><% if feed_url.star %><%= image_tag("favorite.png")%><%end%></td>
-		<td><%= link_to 'Show', feed_url %></td>
-		<td><%= link_to 'Edit', edit_feed_url_path(feed_url) %></td>
-		<td><%= link_to 'Destroy', feed_url, :confirm => 'Are you sure?', :method => :delete %></td>
-	</tr>
-	<% end %>
+<% @feed_urls.each do |feed_url| %>
+  <tr>
+    <td><%= feed_url.site_url %></td>
+    <td><%= feed_url.feed_url %></td>
+    <td><%= feed_url.title %></td>
+    <td><%= feed_url.star %></td>
+    <td><%= link_to 'Show', feed_url %></td>
+    <td><%= link_to 'Edit', edit_feed_url_path(feed_url) %></td>
+    <td><%= link_to 'Destroy', feed_url, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
 </table>
 
 <br />
 
-<%= link_to 'New feed_url', new_feed_url_path %>
+<%= link_to 'New Feed url', new_feed_url_path %>

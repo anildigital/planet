@@ -1,21 +1,23 @@
+<p id="notice"><%= notice %></p>
+
 <p>
-	<b>Site url:</b>
-	<%=h @feed_url.site_url %>
+  <b>Site url:</b>
+  <%= @feed_url.site_url %>
 </p>
 
 <p>
-	<b>Feed url:</b>
-	<%=h @feed_url.feed_url %>
+  <b>Feed url:</b>
+  <%= @feed_url.feed_url %>
 </p>
 
 <p>
-	<b>Title:</b>
-	<%=h @feed_url.title %>
+  <b>Title:</b>
+  <%= @feed_url.title %>
 </p>
 
 <p>
-	<b>Star:</b>
-	<%if  @feed_url.star %><%= image_tag("favorite.png")%><%end%>
+  <b>Star:</b>
+  <%= @feed_url.star %>
 </p>
 
 

@@ -1,15 +1,9 @@
 class PagesController < ApplicationController
-
-  
   #
   # index
   #
   def index
-    @feeds = Feed.paginate(:all, 
-                           :per_page => 15, 
-                           :page => params[:page], 
-                           :order => "published DESC")
-    
+    @feeds = Feed.page params[:page]
     expires_in 5.minutes, :private => false, :public => true
   end
   
@@ -39,8 +33,7 @@ class PagesController < ApplicationController
   # channels
   #
   def channels
-    @feed_urls = FeedUrl.find(:all, :order => :title)
+    @feed_urls = FeedUrl.order(:title)
     render :layout => false
   end
-  
 end
