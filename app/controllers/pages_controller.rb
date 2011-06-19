@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   # index
   #
   def index
-    @feeds = Feed.order("updated_at DESC").page params[:page]
+    @feeds = Feed.order("published DESC").page params[:page]
     expires_in 5.minutes, :private => false, :public => true
   end
   

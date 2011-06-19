@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc1'
+gem 'rails', '3.1.0.rc4'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -32,6 +32,11 @@ gem 'therubyracer'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+
+group :development do
+  gem 'net-http-spy'
+end
 
 group :test do
   # Pretty printed test output

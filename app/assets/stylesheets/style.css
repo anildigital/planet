@@ -192,7 +192,7 @@ img {
 
 #search_form #search{
 	background: transparent url(/assets/search.gif) no-repeat left;
-	background-color: #fff no-repeat scroll 0pt 50%;
+	background-color: #fff;
 	padding:3px 2px 3px 25px;
 	font-weight: bold;
 	font-size:0.8em;
