@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc4'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'mysql'
 
 # Asset template engines
 gem 'sass'
@@ -22,7 +22,7 @@ require 'open-uri'
 require 'uri'
 require 'digest/sha1'
 
-gem 'therubyracer'
+gem 'therubyracer' 
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,6 +36,7 @@ gem 'therubyracer'
 
 group :development do
   gem 'net-http-spy'
+  gem 'sqlite3'
 end
 
 group :test do
