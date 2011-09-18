@@ -8,4 +8,6 @@ db/*.sqlite3
 temp
 nbproject
 vendor/rails
+public/assets/
+.sass-cache/
 .bundle/
