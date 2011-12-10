@@ -9,18 +9,27 @@
   <%= csrf_meta_tags %>
 
 	<script type="text/javascript">
-	jQuery(document).ready(function($) {
+		jQuery(document).ready(function($) {
 		$('a[rel*=facebox]').facebox() 
-	})
+		})
 	</script>
 
 </head>
 <body>
 	<%= yield %>
-	<!-- User Voice Snippet -->
-	<script
-	src="http://anildigital.uservoice.com/pages/general/widgets/tab.js?alignment=left&amp;color=CCCCCC"
-	type="text/javascript">
+
+	<script type="text/javascript">
+		var _gauges = _gauges || [];
+		(function() {
+		var t   = document.createElement('script');
+		t.type  = 'text/javascript';
+		t.async = true;
+		t.id    = 'gauges-tracker';
+		t.setAttribute('data-site-id', '4ee2f180613f5d250600000b');
+		t.src = '//secure.gaug.es/track.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(t, s);
+		})();
 	</script>
 
 </body>
