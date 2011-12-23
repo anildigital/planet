@@ -199,7 +199,7 @@ img {
 }
 
 pre{
-	background: black;
+	background-color: #666;
 	color:white;
 	overflow:auto;
 	padding: 25px 20px 25px;
